@@ -1,0 +1,40 @@
+<%- include ('./partials/head.ejs') %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/styles.css">
+<div class="form-container">
+  <h1>Update <%= theGame.name %></h1>
+  <form action="<%= baseUrl %>/<%= theGame.id %>?_method=PUT" method="post">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      required
+      value="<%= theGame.name %>" />
+      <br><br>
+  
+    <label for="description">Description</label>
+    <textarea
+      name="description"
+      id="description"
+      rows="10"
+      cols="32">
+      <%= theGame.description %></textarea>
+      <br><br>
+
+    <label for="release">Release Date</label>
+    <input 
+      type="text" 
+      id="release" 
+      name="release">
+      <p><%= theGame.release %></p>
+
+    <label for="image">Image</label>
+    <input id="image" name="image" type="file" />
+    <br><br>
+
+    <input class="button button-primary" type="submit" value="Update Game" />
+  </form>
+</div>
+<br><br><br><br>
+<%- include ('./partials/footer.ejs') %>

@@ -1,0 +1,62 @@
+<%- include ('./partials/head.ejs') %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="card games-info">
+  <img src="<%= theGame.imageURL %>" />
+  <div class="card-text">
+    <h2 class="card-heading"><%= theGame.name %></h2>
+    <p><%= theGame.release %></p>
+    <p><%= theGame.platforms %></p>
+    <p><%= theGame.description %></p>
+  </div>
+
+  <div class="action-bar">
+    <form action="<%= baseUrl %>/<%= theGame.id %>?_method=DELETE" method="post">
+      <input class="button button-delete" type="submit" value="Delete" />
+    </form>
+    <a class="button button-primary" href="<%= baseUrl %>/<%= theGame.id %>/edit">Edit</a>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Reviews:</h2>
+  <div class="review">
+  <% for (let comment of theGame.comments) { %>
+    <div class="comment-wrapper">
+      <div class="username">
+        <p><%= comment.username %><%= ':' %></p>
+      </div>
+      <div class="comment">
+        <p><%= comment.comment %></p>
+      </div>
+    </div>
+    <% } %>
+</div>
+  <div id="commentcss">
+    <form action="<%= baseUrl %>/<%= theGame.id %>/comment?_method=POST" method="post">
+      <textarea
+        id="comment"
+        name="comment"
+        rows="8"
+        cols="155"
+        maxlength="500">
+      </textarea>
+  </div>
+      <div id="remaining-chars">500 characters remaining</div>
+      <br>
+      <input class="button button-comment" type="submit" value="Comment" />
+    </form>
+</div>
+<script>
+  const myTextArea = document.getElementById('comment')
+  const remainingCharsText = document.getElementById('remaining-chars')
+  const MAX_CHARS = 500;
+
+  myTextArea.addEventListener('input', () => {
+    const remaining = MAX_CHARS - myTextArea.value.length;
+    console.log(remaining)
+
+    remainingCharsText.textContent = `${remaining} characters remaining`;
+  })
+</script>
+<%- include ('./partials/footer.ejs') %>

@@ -1,0 +1,31 @@
+<%- include('partials/head.ejs') %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+
+  <ul class="games-list">
+  <% for (let games of allGames) { %>
+    <li class="card game"
+      <a class="games-info" href="<%= baseUrl %>/<%= games.id %>">
+        <img src="<%= games.imageURL %>"/>
+        <div class="card-text">
+          <a href="<%= baseUrl %>/<%= games.id %>">
+          <h3 class="card-heading"><%= games.name %></h3>
+          </a>
+        </div>
+      </a>
+
+      <div class="action-bar">
+        <a class="button button-primary" href="<%= baseUrl %>/<%= games.id %>/edit">Edit</a>
+        <form action="<%= baseUrl %>/<%= games.id %>?_method=DELETE" method="post">
+          <input class="button button-delete" type="submit" value="Delete" />
+        </form>
+      </div>
+    </li>
+      <br><br><br>
+  <% } %>
+  </ul>
+
+<%- include('./partials/footer.ejs') %>

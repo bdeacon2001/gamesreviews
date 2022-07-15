@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title><%= tabTitle %></title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="brand-id"><a href="/gamereviews">Game Reviews</a></h1>
+      <nav>
+        <% if (currentUser) {%>
+          <div>
+            <a class="button button-primary" href="<%= baseUrl %>/new">Add Game</a>
+          </div>
+          <br>
+          <form action="/logout?_method=DELETE" method="post">
+            <input class="button button-secondary" type="submit" value="Log Out" />
+          </form>
+        <% } else { %>
+          <a class="button button-secondary" href="/login">Log In</a>
+        <% } %>
+      </nav>
+    </header>
+
+    <main>
